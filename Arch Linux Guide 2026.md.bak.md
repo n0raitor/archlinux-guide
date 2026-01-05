@@ -142,11 +142,11 @@ Untested Alternative with Gui: cfdisk
 I use *gdisk* for GPT Tables
 
 ```bash
-lsblk  # Print Devices
+lsblk  # Print Devices
 
 gdisk /dev/<os-device>  
 
-# n, 128, -1000M, Enter, ef00  # Create EFI Partition
+# n, 128, -1000M, Enter, ef00  # Create EFI Partition
 # n, 1, Enter, Enter, Enter
 # p 
 # w
@@ -155,10 +155,10 @@ gdisk /dev/<os-device>
 **Encrypt Root Partition**
 
 ```bash
-cryptsetup luksFormat /dev/<os-device>1  # Root Partition Device
+cryptsetup luksFormat /dev/<os-device>1  # Root Partition Device
 # Confirm and Enter Passphrase.
 
-cryptsetup open /dev/<os-device>1 cryptroot  # Open Created LVM Device
+cryptsetup open /dev/<os-device>1 cryptroot  # Open Created LVM Device
 # Enter Passphrase
 ```
 
@@ -205,27 +205,27 @@ pacstrap /mnt base base-devel linux-lts linux linux-headers linux-lts-headers li
 **Gererate fstab**
 
 ```bash
-genfstab -U /mnt >> /mnt/etc/fstab  # (alt. change -U to -L to use Label instead of UUID
-cat /mnt/etc/fstab  # check gen
+genfstab -U /mnt >> /mnt/etc/fstab  # (alt. change -U to -L to use Label instead of UUID
+cat /mnt/etc/fstab  # check gen
 ```
 
 **Switch to Arch-Chroot**
 
 ```bash
-arch-chroot /mnt  # Change to Root Directory
+arch-chroot /mnt  # Change to Root Directory
 ```
 
 **Set Time**
 
 ```bash
-ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime  # Set Timezone
+ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime  # Set Timezone
 hwclock --systohc # Sync Hardware-Clock - Run to generate /etc/adjtime
 ```
 
 **Set Locale**
 
 ```bash
-echo LANG=de_DE.UTF-8 > /etc/locale.conf  # Set Language
+echo LANG=de_DE.UTF-8 > /etc/locale.conf  # Set Language
 nano /etc/locale.gen
 # Uncomment this:
 #de_DE.UTF-8 UTF-8
@@ -265,14 +265,14 @@ passwd
 **Edit Hosts file (optional)** 
 
 ```bash
-nano /etc/hosts  # set Hosts file
+nano /etc/hosts  # set Hosts file
 ```
 
 ```
-# <ip-address>    <hostname.domain.org>        <hostname>
-127.0.0.1         localhost.localdomain        localhost
-::1               localhost.localdomain        localhost
-127.0.0.1         <hostname>.localdomain       <hostname>
+# <ip-address>    <hostname.domain.org>        <hostname>
+127.0.0.1         localhost.localdomain        localhost
+::1               localhost.localdomain        localhost
+127.0.0.1         <hostname>.localdomain       <hostname>
 ```
 
 **Edit Mirror List** (Optional -> Later possible too, recommended for better download speed)
@@ -422,7 +422,7 @@ NVIDIA - Open source:
 sudo pacman -S xf86-video-nouveau mesa mesa-utils
 
 # optional # c
-# virtualbox-guest-utils  # (For Virtualbox)
+# virtualbox-guest-utils  # (For Virtualbox)
 ```
 
 NVIDIA - Prop:
@@ -452,7 +452,7 @@ sudo pacman -S mesa mesa-utils libva-mesa-driver
 VM:
 
 ```bash
-sudo pacman -S virtualbox-guest-utils  # (For Virtualbox)
+sudo pacman -S virtualbox-guest-utils  # (For Virtualbox)
 ```
 
 ### Desktop Environment
@@ -493,8 +493,8 @@ systemctl enable sshd   # Optional
 **Reboot**
 
 ```bash
-exit  # leave arch-chroot
-umount -a  # Unmount all devices
+exit  # leave arch-chroot
+umount -a  # Unmount all devices
 reboot
 ```
 
@@ -517,8 +517,8 @@ nano /etc/pacman.conf
 pacman -Sy
 
 ### Segnature Security ###
-pacman -S archlinux-keyring  # Update keyring
-pacman-key --refresh-keys  # Refresh pacman keys
+pacman -S archlinux-keyring  # Update keyring
+pacman-key --refresh-keys  # Refresh pacman keys
 
 # If it fails (lots of red lines at once): Make sure your System Time is right
 ```
@@ -535,8 +535,8 @@ Num Lock activation: [Activating numlock on bootup - ArchWiki](https://wiki.arch
 
 ```bash
 sudo pacman -S alsa-plugins alsa-utils pulseaudio pulseaudio-alsa
-sudo pacman -S pulseaudio-bluetooth  # Bluetooth Support
-sudo pacman -S pulseaudio-equalizer  # Optional
+sudo pacman -S pulseaudio-bluetooth  # Bluetooth Support
+sudo pacman -S pulseaudio-equalizer  # Optional
 ```
 
 **Tools / Utilities / Recommended Packages**
@@ -599,7 +599,7 @@ sudo systemctl enable auto-cpufreq
 
 Powertop:
 
-* **Powertop** is a tool provided by Intel to enable various powersaving modes in userspace, kernel and hardware. It is possible to monitor processes and show which of them are utilizing the CPU and wake it from its Idle-States, allowing to identify applications with particular high power demands.
+* **Powertop** is a tool provided by Intel to enable various powersaving modes in userspace, kernel and hardware. It is possible to monitor processes and show which of them are utilizing the CPU and wake it from its Idle-States, allowing to identify applications with particular high power demands.
 
 ```bash
 sudo pacman -S powertop
@@ -883,7 +883,7 @@ yay -S snapd-glib
 
 git clone https://aur.archlinux.org/libpamac-aur.git
 cd libpamac
-nano PKGBUILD  # Edit PKGBUILD
+nano PKGBUILD  # Edit PKGBUILD
 # SET
 ENABLE_FLATPAK=1
 ENABLE_SNAPD=1
@@ -1044,7 +1044,7 @@ sudo pacman -S steam steam-native-runtime
 ```bash
 yay -S minecraft-launcher
 
-yay -S multimc-bin  # MC Mod Manage Launcher
+yay -S multimc-bin  # MC Mod Manage Launcher
 ```
 
 [Gaming - ArchWiki](https://wiki.archlinux.org/title/gaming)
@@ -1108,7 +1108,7 @@ pamac install pamac-zsh-completions
 #### OR
 
 ```bash
-sudo nano /etc/profile.d/editor.sh  # set default global editor
+sudo nano /etc/profile.d/editor.sh  # set default global editor
 ```
 
 **Man Page - German Edition**
@@ -1116,7 +1116,7 @@ sudo nano /etc/profile.d/editor.sh  # set default global editor
 ```bash
 sudo pacman -S man-pages-de
 
-alias man="LANG=de_DE.UTF-8 man"  # Write to ~/.bashrc or ~/.zshrc
+alias man="LANG=de_DE.UTF-8 man"  # Write to ~/.bashrc or ~/.zshrc
 ```
 
 **Most**
@@ -1180,7 +1180,7 @@ sudo systemctl restart NetworkManager
 ```bash
 # Lightweight video thumbnailer that can be used by file managers.
 
-sudo pacman -S ffmpegthumbnailer  
+sudo pacman -S ffmpegthumbnailer  
 ```
 
 **System Monitoring**
@@ -1208,7 +1208,7 @@ yay -S nvidia-system-monitor-git
 Maybe fixes pacman issues
 
 ```bash
-pacman-key --refresh-keys  # Refresh pacman keys
+pacman-key --refresh-keys  # Refresh pacman keys
 ```
 
 
@@ -1224,7 +1224,7 @@ sudo pacman -S system-config-printer
 **Install Your Brother Printer Driver**
 
 ```bash
-yay -S <Printer Driver ID> (Search yay -Ss or in Pamac)  --  e.g. brother-dcpj315w
+yay -S <Printer Driver ID> (Search yay -Ss or in Pamac)  --  e.g. brother-dcpj315w
 
 sudo lpadmin -p dcpj315w -v lpd://${printer-ip}/BINARY_P1
 
@@ -1274,9 +1274,9 @@ Alternatively, you can use add *numlockx* on (from numlockx to a startup script,
 ### Remove Orphans
 
 ```bash
-sudo pacman -Rns $(pacman -Qtdq)  # Removes unused Packages
+sudo pacman -Rns $(pacman -Qtdq)  # Removes unused Packages
 
-yay -Sc  # Removes Cache of YAY
+yay -Sc  # Removes Cache of YAY
 
 
 
@@ -1294,7 +1294,7 @@ sudo pacman-optimize
 Forces System to use as much RAM as possible and reduces hard drive access
 
 ```bash
-cat /proc/sys/vm/swappiness  # 60 by DEFAULT
+cat /proc/sys/vm/swappiness  # 60 by DEFAULT
 
 sudo nano /etc/sysctl.d/100-archlinux.conf
 
@@ -1304,7 +1304,7 @@ reboot
 
 
 
-cat /proc/sys/vm/swappiness  # should be 10 now
+cat /proc/sys/vm/swappiness  # should be 10 now
 ```
 
 ### Trim SSD
@@ -1312,13 +1312,13 @@ cat /proc/sys/vm/swappiness  # should be 10 now
 Enable Trim for SSD - optimize performance of ssd-drive
 
 ```bash
-sudo systemctl status fstrim.timer  # should be inactive, if not, skip to next heading
+sudo systemctl status fstrim.timer  # should be inactive, if not, skip to next heading
 
 
 
 sudo systemctl start fstrim.timer
 
-sudo systemctl status fstrim.timer  # should be active now
+sudo systemctl status fstrim.timer  # should be active now
 ```
 
 ### Make Arch Stable (Golden Rules)
@@ -1350,11 +1350,11 @@ sudo rsync -aAXvP --delete --exclude=/dev/* --exclude=/proc/* --exclude=/sys/* -
 ### In general
 
 ```bash
- sudo pacman -S os-prober
+ sudo pacman -S os-prober
 ```
 
 ```bash
- sudo pacman -S ntfs-3g  #opt: If target Os is Windows
+ sudo pacman -S ntfs-3g  #opt: If target Os is Windows
 ```
 
 **Mount Dir of OS**
@@ -1374,7 +1374,7 @@ os-prober
 **recreate Grub Config**
 
 ```bash
- grub-mkconfig -o /boot/grub/grub.cfg
+ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 If a message appears: *Os-prober will not be executed*
@@ -1399,11 +1399,11 @@ sudo route add -net 172.16.0.0/16 tun0
 
 * or install *pacman-contrib*
 
-  * paccache -h    # help page
+  * paccache -h    # help page
 
-  * ... -d  #Dry Mode (just list packages to remove)
+  * ... -d  #Dry Mode (just list packages to remove)
 
-  * .... -r  #Remove Packages from Dry Mode
+  * .... -r  #Remove Packages from Dry Mode
 
 * oder mit paccache.timer jeden Monat automatisch bereinigen
 
@@ -1411,23 +1411,23 @@ sudo route add -net 172.16.0.0/16 tun0
 
   * For this enter:
 
-    ```
-    
-    [Unit]
-    
-    Description=Clean-up old pacman pkg
-    
-    [Timer]
-    
-    OnCalendar=monthly
-    
-    Persistent=true
-    
-    [Install]
-    
-    WantedBy=multi-user.target
-    
-    ```
+    ```
+
+    [Unit]
+
+    Description=Clean-up old pacman pkg
+
+    [Timer]
+
+    OnCalendar=monthly
+
+    Persistent=true
+
+    [Install]
+
+    WantedBy=multi-user.target
+
+    ```
 
 #### Remove Orphans
 
@@ -1438,7 +1438,7 @@ sudo pacman -R $(pacman -Qtdq)
 #### Clean Cache in /home
 
 ```bash
-du -sh ~/.cache/    # Size of Cache
+du -sh ~/.cache/    # Size of Cache
 
 rm -rf ~/.cache/*
 ```
@@ -1456,7 +1456,7 @@ sudo pacman -S rmlint
 
 rmlint --help
 
-rmlint /home/user     #Scans folder and saves special script to remove findings (read results)
+rmlint /home/user     #Scans folder and saves special script to remove findings (read results)
 ```
 
 #### Find the largest files and directories
@@ -1464,7 +1464,7 @@ rmlint /home/user     #Scans folder and saves special script to remove findings 
 ```bash
 sudo pacman -S ncdu
 
-ncdu   # Run tool (command line)
+ncdu   # Run tool (command line)
 ```
 
 #### Clean Trash (Remember)
@@ -1494,13 +1494,13 @@ Um die Größe von Dateisystemen ändern zu können, müssen je nach Dateisystem
 Um ein ext3-Dateisystem anzupassen, darf es nicht eingehängt oder fehlerhaft sein. Seit Linux Kernel 2.6.10 kann man ext3 (nicht ext2)-Dateisysteme auch im eingehängten Zustand vergrößern, nicht jedoch verkleinern! Es ist sinnvoll, jedoch nicht nötig, das Dateisystem zuvor mit "e2fsck" auf Fehler zu überprüfen.
 
 ```bash
-sudo resize2fs -p /dev/gerätename   # Vergrößert das Dateisystem bis zur maximalen Größe des Logical Volumes oder der Partition
+sudo resize2fs -p /dev/gerätename   # Vergrößert das Dateisystem bis zur maximalen Größe des Logical Volumes oder der Partition
 
-sudo resize2fs -M /dev/gerätename   # Verkleinert das Dateisystem bis zur minimalen Größe des Logical Volumes oder der Partition
+sudo resize2fs -M /dev/gerätename   # Verkleinert das Dateisystem bis zur minimalen Größe des Logical Volumes oder der Partition
 
-sudo resize2fs -p /dev/gerätename 5G   # Vergrößert bzw. Verkleinert das Dateisystem auf 5 Gibibyte Gesamtgröße
+sudo resize2fs -p /dev/gerätename 5G   # Vergrößert bzw. Verkleinert das Dateisystem auf 5 Gibibyte Gesamtgröße
 
-sudo resize2fs -P /dev/gerätename   # Gibt die Minimalgröße an, wie weit das Dateisystem verkleinert werden kann
+sudo resize2fs -P /dev/gerätename   # Gibt die Minimalgröße an, wie weit das Dateisystem verkleinert werden kann
 ```
 
 NOTE: Für Größenangaben (im Beispiel 5G) verwendet "resize2fs" den Teiler 1024, nicht 1000!
@@ -1512,13 +1512,13 @@ NOTE: Der im Beispiel verwendete Parameter -p von "resize2fs" dient dazu, einen 
 Um ein NTFS-Dateisystem anzupassen, darf es nicht eingehängt oder fehlerhaft sein. Auf dem Dateisystem dürfen keine NTFS-verschlüsselten oder NTFS-komprimierten Dateien oder Ordner liegen, ein vorherige Defragmentierung ist ratsam, jedoch nicht erforderlich.
 
 ```bash
-sudo ntfsresize /dev/gerätename   # Vergrößert das Dateisystem bis zur maximalen Größe des Logical Volumes oder der Partition
+sudo ntfsresize /dev/gerätename   # Vergrößert das Dateisystem bis zur maximalen Größe des Logical Volumes oder der Partition
 
-sudo ntfsresize -n --size 5G /dev/gerätename  # Vergrößert bzw. Verkleinert das Dateisystem auf 5 Gigabyte Gesamtgröße, Testlauf im Read-only-Modus (empfehlenswert!)
+sudo ntfsresize -n --size 5G /dev/gerätename  # Vergrößert bzw. Verkleinert das Dateisystem auf 5 Gigabyte Gesamtgröße, Testlauf im Read-only-Modus (empfehlenswert!)
 
-sudo ntfsresize --size 5G /dev/gerätename     # Vergrößert bzw. Verkleinert das Dateisystem auf 5 Gigabyte Gesamtgröße
+sudo ntfsresize --size 5G /dev/gerätename     # Vergrößert bzw. Verkleinert das Dateisystem auf 5 Gigabyte Gesamtgröße
 
-sudo ntfsresize -i /dev/gerätename  # Zeigt an, auf welche Größe das Dateisystem minimal verkleinert werden kann
+sudo ntfsresize -i /dev/gerätename  # Zeigt an, auf welche Größe das Dateisystem minimal verkleinert werden kann
 ```
 
 NOTE: Der --size Parameter von "ntfsresize" verwendet den Teiler 1000 statt der üblichen 1024 beim Umrechnen von Gigabyte in Megabyte usw..., dies sollte beim Anpassen des Dateisystems beachtet werden! Bei der Verkleinerung ist darauf zu achten mindestens ca. 70 Mbyte über dem Minimalwert (Parameter -i) einzugeben!
@@ -1621,7 +1621,7 @@ Open Cadence and Coose in the Settings:
 
 - (evtl. Realitme Priority: 95)
 
-  Do not try to Start the JACK Server now, we do that later
+  Do not try to Start the JACK Server now, we do that later
 
 Feel free to experiment with some of the shipped internal tools of *Cadence* later ;)
 
@@ -1652,9 +1652,9 @@ Insert this:
 ```bash
 # audio group
 
-@audio        -        rtprio        95
+@audio        -        rtprio        95
 
-@audio        -        memlock        unlimited
+@audio        -        memlock        unlimited
 ```
 
 Save with: Ctrl+O, Enter, Ctrl+W, Enter
@@ -1672,9 +1672,9 @@ sudo pacman -S ardour
 
 # Optional
 
-sudo pacman -S xjadeo  # A simple video player that is synchronized to jack (work with film files on music production base)
+sudo pacman -S xjadeo  # A simple video player that is synchronized to jack (work with film files on music production base)
 
-sudo pacman -S harvid  # HTTP Ardour Video Daemon
+sudo pacman -S harvid  # HTTP Ardour Video Daemon
 ```
 
 **Now Start Ardour**
@@ -1696,7 +1696,7 @@ In Manjaro, the Kernel Menu make it easy to install the RT Kernal of Linux
 If you do so, reboot your Machine.
 
 ```bash
-uname -a  # Check if the installation was successful
+uname -a  # Check if the installation was successful
 ```
 
 Make sure to test the RT Kernal first, before removing the other on!
@@ -1836,5 +1836,8 @@ sudo pacman -S pulseaudio-jack
 
 # or
 
-yay -S vcvrack-bin  # -> ASLA to JACK, Sound to System-Sound
+yay -S vcvrack-bin  # -> ASLA to JACK, Sound to System-Sound
 ```
+
+
+
