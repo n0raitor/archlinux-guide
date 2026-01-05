@@ -4,28 +4,6 @@ This is my 2026 created guide of all things archlinux I learned over the past 7 
 
 Tested Release: 2026.01.01
 
-**Jump To Topic**
-
-* [Welcome](#!!!Welcome!!!)
-
-* [!!!Preparation!!!](#!!!Preparation!!!)
-
-* [!!!Base Install!!!](!!!Base Install!!!)
-
-* [!!!Configure System!!!](#!!!Configure System!!!)
-
-* [!!!Post Installation!!!](#!!!Post Installation!!!)
-
-* [!!!GNOME and Appearance!!!](#!!!GNOME and Appearance!!!)
-
-* [!!!Programms!!!](#!!!Programms!!!)
-
-* [!!!After Reboot: Final Steps!!!](#!!!After Reboot: Final Steps!!!)
-
-* [!!!Maintenance!!!](#!!!Maintenance!!!)
-
-* [!!!Music Production!!!](#!!!Music Production!!!)
-
 ## !!!Welcome!!!
 
 In this Installation Guide, I will explain my default Setup for ArchLinux with LUKS Drive-Encryption and EFI.
