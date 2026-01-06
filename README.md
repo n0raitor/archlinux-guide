@@ -773,7 +773,7 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 **Recommended Tools and Programs in one Block**
 
 ```bash
-sudo pacman -S wireless_tools qbittorrent gnome-keyring evolution vlc obs-studio handbrake brasero audacity gimp gimp-help-de darktable krita calibre gnome-builder python-pip ipython gparted bleachbit xreader libreoffice-still libreoffice-still-de hunspell hunspell-en_us hunspell-de mythes aspell aspell-de aspell-en mythes mythes-en  mythes-de languagetool enchant libmythes speech-dispatcher protonmail-bridge-core kdenlive signal-desktop filelight baobab bleachbit glances htop gnome-disk-utility gparted hwinfo nano-syntax-highlighting neofetch
+sudo pacman -S wireless_tools qbittorrent gnome-keyring evolution vlc obs-studio handbrake brasero audacity gimp gimp-help-de darktable krita calibre gnome-builder python-pip ipython gparted bleachbit xreader libreoffice-still libreoffice-still-de hunspell hunspell-en_us hunspell-de mythes aspell aspell-de aspell-en mythes mythes-en  mythes-de languagetool enchant libmythes speech-dispatcher protonmail-bridge-core kdenlive signal-desktop filelight baobab bleachbit glances htop gnome-disk-utility gparted hwinfo nano-syntax-highlighting neofetch gnome-firmware
 
 yay -S jdownloader2 openshot balena-etcher guitar-pro yed vscodium-bin github-desktop-bin zotero-bin libreoffice-extension-languagetool marktext-bin
 
@@ -894,7 +894,7 @@ sudo pacman -S gnome-softwarte
 sudo pacman -S nautilus-terminal
 ```
 
-**PEN and DFIR Tools**
+## PEN and DFIR Tools
 
 Requirement
 
@@ -910,6 +910,39 @@ Installation:
 sudo pacman -S nmap wireshark-qt hashcat
 yay -S ida-free ghidra edb-debugger-git maltego burpsuite
 ```
+
+
+
+**Blackarch**
+
+```bash
+curl -O https://blackarch.org/strap.sh
+echo 00688950aaf5e5804d2abebb8d3d3ea1d28525ed strap.sh | sha1sum -c
+chmod +x strap.sh
+sudo ./strap.sh
+sudo pacman -Syu
+```
+
+```bash
+# To list all of the available tools, run
+sudo pacman -Sgg | grep blackarch | cut -d' ' -f2 | sort -u
+
+# To install a category of tools, run
+sudo pacman -S blackarch-<category>
+
+# To see the blackarch categories, run
+sudo pacman -Sg | grep blackarch
+
+# To search for a specific package, run
+pacman -Ss <package_name>
+
+# Note - it maybe be necessary to overwrite certain packages when installing blackarch tools. If
+# you experience "failed to commit transaction" errors, use the --needed and --overwrite switches
+# For example:
+sudo pacman -Syyu --needed --overwrite='*' <wanted-package> 
+```
+
+
 
 ---
 
