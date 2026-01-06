@@ -438,7 +438,7 @@ sudo pacman -S virtualbox-guest-utils  # (For Virtualbox)
 Gnome:
 
 ```bash
-sudo pacman -S gnome gdm gnome-shell-extensions gnome-tweaks
+sudo pacman -S gnome gdm gnome-shell-extensions gnome-tweaks extension-manager
 sudo systemctl enable gdm.service
 ```
 
@@ -586,7 +586,7 @@ sudo pacman -S powertop
 ### ZSH
 
 ```bash
-sudo pacman -S zsh zsh-syntax-highlighting zsh-autosuggestions  zsh-completion
+sudo pacman -S zsh zsh-syntax-highlighting zsh-autosuggestions zsh-completions
 yay -S zsh-theme-powerlevel10k
 ```
 
