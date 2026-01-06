@@ -586,8 +586,8 @@ sudo pacman -S powertop
 ### ZSH
 
 ```bash
-sudo pacman -S zsh zsh-syntax-highlighting zsh-autosuggestions zsh-theme-powerlevel10k
-yay -S pamac-zsh-completions
+sudo pacman -S zsh zsh-syntax-highlighting zsh-autosuggestions  zsh-completion
+yay -S zsh-theme-powerlevel10k
 ```
 
 
@@ -773,7 +773,7 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 **Recommended Tools and Programs in one Block**
 
 ```bash
-sudo pacman -S wireless_tools qbittorrent gnome-keyring evolution vlc obs-studio handbrake brasero audacity gimp gimp-help-de darktable krita calibre gnome-builder python-pip ipython gparted bleachbit xreader libreoffice-still libreoffice-still-de hunspell hunspell-en_us hunspell-de mythes aspell aspell-de aspell-en mythes mythes-en  mythes-de languagetool enchant libmythes speech-dispatcher protonmail-bridge-core kdenlive signal-desktop filelight baobab bleachbit glances htop gnome-disk-utility gparted hwinfo nano-syntax-highlighting neofetch gnome-firmware
+sudo pacman -S wireless_tools qbittorrent gnome-keyring evolution vlc obs-studio handbrake brasero audacity gimp gimp-help-de darktable krita calibre gnome-builder python-pip ipython gparted bleachbit xreader libreoffice-still libreoffice-still-de hunspell hunspell-en_us hunspell-de mythes aspell aspell-de aspell-en mythes mythes-en  mythes-de languagetool enchant libmythes speech-dispatcher protonmail-bridge-core kdenlive signal-desktop filelight baobab bleachbit glances htop gnome-disk-utility gparted hwinfo nano-syntax-highlighting neofetch gnome-firmware obsidian firefox gnome-builder pycharm-community-edition gnome-boxes
 
 yay -S jdownloader2 openshot balena-etcher guitar-pro yed vscodium-bin github-desktop-bin zotero-bin libreoffice-extension-languagetool marktext-bin
 
@@ -832,6 +832,12 @@ sudo modprobe vboxdrv
 sudo nano /etc/modules-load.d/vboxdrv.conf
 # Add vboxdrv
 yay -S virtualbox-ext-oracle
+```
+
+**virt-manager**
+
+```bash
+sudo pacman -S virt-manager
 ```
 
 **Bottles**
