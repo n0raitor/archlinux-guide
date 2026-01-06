@@ -458,7 +458,7 @@ TLP:
 
 ```bash
 sudo pacman -S tlp tlp-rdw
-sudo systemctl enable auto-cpufreq --now
+sudo systemctl enable tlp --now
 ```
 
 **Optional: Network-Manager**
@@ -581,6 +581,13 @@ Powertop:
 
 ```bash
 sudo pacman -S powertop
+```
+
+### ZSH
+
+```bash
+sudo pacman -S zsh zsh-syntax-highlighting zsh-autosuggestions zsh-theme-powerlevel10k
+yay -S pamac-zsh-completions
 ```
 
 
@@ -766,14 +773,11 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 **Recommended Tools and Programs in one Block**
 
 ```bash
-sudo pacman -S wireless_tools qbittorrent gnome-keyring evolution vlc obs-studio handbrake brasero audacity gimp gimp-help-de darktable krita calibre gnome-builder python-pip ipython gparted bleachbit xreader libreoffice-still libreoffice-still-de hunspell hunspell-en_us hunspell-de mythes aspell aspell-de aspell-en mythes mythes-en  mythes-de languagetool enchant libmythes speech-dispatcher
+sudo pacman -S wireless_tools qbittorrent gnome-keyring evolution vlc obs-studio handbrake brasero audacity gimp gimp-help-de darktable krita calibre gnome-builder python-pip ipython gparted bleachbit xreader libreoffice-still libreoffice-still-de hunspell hunspell-en_us hunspell-de mythes aspell aspell-de aspell-en mythes mythes-en  mythes-de languagetool enchant libmythes speech-dispatcher protonmail-bridge-core kdenlive signal-desktop filelight baobab bleachbit glances htop gnome-disk-utility gparted hwinfo nano-syntax-highlighting neofetch
 
-yay -S jdownloader2 protonmail-bridge-bin kdenlive openshot balena-etcher guitar-pro yed vscodium-bin github-desktop-bin zotero-bin libreoffice-extension-languagetool
+yay -S jdownloader2 openshot balena-etcher guitar-pro yed vscodium-bin github-desktop-bin zotero-bin libreoffice-extension-languagetool marktext-bin
 
 pip3 install pylint
-
-flatpak install flathub org.signal.Signal
-flatpak install marktext
 ```
 
 ******
@@ -843,7 +847,7 @@ If you want a more "Kali" like shell, feel free to install [this](https://wiki.a
 **Ubuntu System Optimizer - Stacer**
 
 ```bash
-yay -S stacer
+yay -S stacer-bin
 ```
 
 ## The Package Manager of Arch Linux
@@ -870,6 +874,16 @@ makepkg -si
 yay -S pamac-aur
 ```
 
+**Gnome Software**
+
+```bash
+sudo pacman -S gnome-softwarte
+```
+
+
+
+## Other Tools
+
 **No Adobe - Use the Libre Graphics Suite**
 
 [Follow this link](https://github.com/AppImage/AppImageKit/wiki/Libre-Graphics-Suite)
@@ -880,7 +894,7 @@ yay -S pamac-aur
 sudo pacman -S nautilus-terminal
 ```
 
-**IDA**
+**PEN and DFIR Tools**
 
 Requirement
 
@@ -890,104 +904,29 @@ cd qwingraph_qt5
 sudo ./install.sh
 ```
 
-```bash
-yay -S ida-free
-```
-
-**Ghidra**
+Installation:
 
 ```bash
-yay -S ghidra
+sudo pacman -S nmap wireshark-qt hashcat
+yay -S ida-free ghidra edb-debugger-git maltego burpsuite
 ```
 
-**EDB - Debugger**
+---
 
-```bash
-yay -S edb-debugger-git
-```
+**.RST Reader**
 
-**Maltego**
-
-```bash
-yay -S maltego
-python3 -m venv ~/Dokumente/venv/mcti
-# Create VENV and install maltego-trx and requests
-# TODO Copy Transforms and Inport Configs auto inport
-```
-
-### Penetration Testing
-
-#### Burp suite
-
-Burp Suite is an integrated platform for performing security testing of web applications. Its various tools work seamlessly together to support the entire testing process, from initial mapping and analysis of an application's attack surface, to finding and exploiting security vulnerabilities.
-
-This will install Burp Suite Community (free edition):
-
-```bash
-yay -S burpsuite
-```
-
-#### nmap
-
-```bash
-sudo pacman -S nmap
-```
-
-#### Wireshark
-
-```bash
-sudo pacman -S wireshark-qt
-```
-
-#### Hashcat
-
-```bash
-sudo pacman -S hashcat
-```
-
-*****
-
-### .RST Reader
-
-**Restview**
+Restview:
 
 ```bash
 sudo pacman --needed -S python-virtualenv
-
-
-
 mkdir -p ~/venv/restview
-
 cd ~/venv/restview
-
 virtualenv venv # The second system I used just used 'virtualenv venv'
-
 ./venv/bin/pip install restview
-
 ./venv/bin/restview ~/path/MANUAL.rst
 ```
 
-****
 
-### Disk Cleaning Program
-
-*BleachBit*
-
-```bash
-sudo pacman -S bleachbit
-```
-
-*Filelight* #GUI Tool
-
-```bash
-sudo pacman -S filelight
-```
-
-*Baobab* #Gnome Tool
-
-```bash
-sudo pacman -S baobab
-```
 
 ****
 
@@ -995,21 +934,7 @@ sudo pacman -S baobab
 
 Knowledge Database [Zim - ArchWiki](https://wiki.archlinux.org/title/Zim)
 
-****
-
-### Game Development
-
-#### Unreal Engine 4
-
-[Unreal Engine 4 - ArchWiki](https://wiki.archlinux.org/title/Unreal_Engine_4)
-
-#### Epic-Asset-Manager
-
-[GitHub - AchetaGames/Epic-Asset-Manager: A frontend to Assets purchased on Epic Games Store](https://github.com/AchetaGames/Epic-Asset-Manager)
-
-****
-
-### Gaming
+## Gaming
 
 **Steam**
 
@@ -1043,41 +968,16 @@ Legendary — A free and open-source replacement for the Epic Games Launcher. [G
 
 Heroic Games Launcher — A GUI for legendary, an open-source alternative for the Epic Games Launcher. [GitHub - Heroic-Games-Launcher/HeroicGamesLauncher: A Native GOG and Epic Games Launcher for Linux, Windows and Mac.](https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher) || [heroic-games-launcher-bin](https://aur.archlinux.org/packages/heroic-games-launcher-bin/)AUR
 
-****
-
-### Synology
+## Synology
 
 ```bash
 yay -S synology-drive
-
 yay -S synology-note-station
 ```
 
-****
-
-### Advanced Power Management
-
-```bash
-sudo pacman -S tlp tlp-rdw
-```
-
-****
-
-### ZSH
-
-```bash
-sudo pacman -S zsh zsh-syntax-highlighting zsh-autosuggestions zsh-theme-powerlevel10k
-```
-
-Extra
-
-```bash
-pamac install pamac-zsh-completions
-```
 
 
-
-## !!!After Reboot: Final Steps!!!
+## !!!Final Steps!!!
 
 ### Bash
 
@@ -1093,7 +993,6 @@ sudo nano /etc/profile.d/editor.sh  # set default global editor
 
 ```bash
 sudo pacman -S man-pages-de
-
 alias man="LANG=de_DE.UTF-8 man"  # Write to ~/.bashrc or ~/.zshrc
 ```
 
@@ -1101,15 +1000,8 @@ alias man="LANG=de_DE.UTF-8 man"  # Write to ~/.bashrc or ~/.zshrc
 
 ```bash
 #Install Most for Manual Page highlighting
-
-
-
 sudo pacman -S most
-
 export PAGER=most
-
-
-
 # See results on "man mv"
 ```
 
@@ -1131,9 +1023,7 @@ ssh-keygen -t rsa -b 4096 -o -a 100
 
 ```bash
 # sudo systemctl enable sshd
-
 # sudo systemctl start sshd
-
 # -> Already done, if not, run this commands
 ```
 
@@ -1141,7 +1031,6 @@ ssh-keygen -t rsa -b 4096 -o -a 100
 
 ```bash
 sudo pacman -S openvpn networkmanager-openvpn
-
 sudo systemctl restart NetworkManager
 ```
 
@@ -1149,7 +1038,6 @@ sudo systemctl restart NetworkManager
 
 ```bash
 sudo pacman -S openconnect networkmanager-openconnect
-
 sudo systemctl restart NetworkManager
 ```
 
@@ -1157,31 +1045,10 @@ sudo systemctl restart NetworkManager
 
 ```bash
 # Lightweight video thumbnailer that can be used by file managers.
-
 sudo pacman -S ffmpegthumbnailer  
 ```
 
-**System Monitoring**
-
-```bash
-sudo pacman -S neofetch
-
-sudo pacman -S nano-syntax-highlighting
-
-sudo pacman -S hwinfo
-
-sudo pacman -S gnome-disk-utility gparted
-
-sudo pacman -S glances
-
-sudo pacman -S htop
-
-yay -S nvidia-system-monitor-git
-```
-
-
-
-### !!!Maintenance!!!
+## !!!Maintenance!!!
 
 Maybe fixes pacman issues
 
@@ -1189,11 +1056,7 @@ Maybe fixes pacman issues
 pacman-key --refresh-keys  # Refresh pacman keys
 ```
 
-
-
-### Setup CUPS
-
-**Preconditions**
+**Setup CUPS**
 
 ```bash
 sudo pacman -S system-config-printer
@@ -1202,11 +1065,8 @@ sudo pacman -S system-config-printer
 **Install Your Brother Printer Driver**
 
 ```bash
-yay -S <Printer Driver ID> (Search yay -Ss or in Pamac)  --  e.g. brother-dcpj315w
-
+yay -S <Printer Driver ID> (Search yay -Ss or in Pamac)  # e.g. brother-dcpj315w
 sudo lpadmin -p dcpj315w -v lpd://${printer-ip}/BINARY_P1
-
-
 
 # opt-dep
 
@@ -1229,11 +1089,7 @@ Finally:
 
 NOTE: You may test this multiple times: Use the Test-Print Button to test the connectivity
 
-### Activating NumLock on Bootup
-
-**GNOME**
-
-Run the following command:
+**Activating NumLock on Bootup**
 
 ```bash
 gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true
@@ -1249,57 +1105,44 @@ Note: The key *numlock-state* was moved from *org.gnome.settings-daemon.peripher
 
 Alternatively, you can use add *numlockx* on (from numlockx to a startup script, like */.bashrc* (if using Bash) or */.profile.*
 
-### Remove Orphans
+**Remove Orphans**
 
 ```bash
 sudo pacman -Rns $(pacman -Qtdq)  # Removes unused Packages
-
 yay -Sc  # Removes Cache of YAY
-
-
-
 # Also: https://ostechnix.com/recommended-way-clean-package-cache-arch-linux/
 ```
 
-### Optimize pacman's database access speeds
+**Optimize pacman's database access speeds**
 
 ```bash
 sudo pacman-optimize
 ```
 
-### Reduce Swappiness
+**Reduce Swappiness**
 
 Forces System to use as much RAM as possible and reduces hard drive access
 
 ```bash
 cat /proc/sys/vm/swappiness  # 60 by DEFAULT
-
 sudo nano /etc/sysctl.d/100-archlinux.conf
-
 -> vm.swappiness=10
-
 reboot
-
-
 
 cat /proc/sys/vm/swappiness  # should be 10 now
 ```
 
-### Trim SSD
+**Trim SSD**
 
 Enable Trim for SSD - optimize performance of ssd-drive
 
 ```bash
 sudo systemctl status fstrim.timer  # should be inactive, if not, skip to next heading
-
-
-
 sudo systemctl start fstrim.timer
-
 sudo systemctl status fstrim.timer  # should be active now
 ```
 
-### Make Arch Stable (Golden Rules)
+**Make Arch Stable (Golden Rules)**
 
 1. Do Backups with Timeshift and BtrFS
 
@@ -1311,13 +1154,13 @@ sudo systemctl status fstrim.timer  # should be active now
 
 5. Do not install out of date packages! Use the AUR Page and search under package actions: *Flagged out-of-date (2019 <year not updeated>)*. You can also see this in the aur-tool logs!
 
-### Check for errors
+**Check for errors**
 
 ```bash
 sudo systemctl --failed sudo journalctl -p 3 -xb
 ```
 
-### (optional) Backup your System manually
+**(optional) Backup your System manually**
 
 ```bash
 sudo rsync -aAXvP --delete --exclude=/dev/* --exclude=/proc/* --exclude=/sys/* --exclude=/tmp/* --exclude=/run/* --exclude=/mnt/* --exclude=/media/* --exclude=/lost+found --exclude=/home/.ecryptfs / /mnt/backupDestination/
@@ -1325,7 +1168,7 @@ sudo rsync -aAXvP --delete --exclude=/dev/* --exclude=/proc/* --exclude=/sys/* -
 
 ## Set Dual Boot
 
-### In general
+In general
 
 ```bash
  sudo pacman -S os-prober
@@ -1359,19 +1202,16 @@ If a message appears: *Os-prober will not be executed*
 
 Solution: Set the named constant to the default/grub file as False (don't forget to uncommand the line)
 
-### Extra
-
 **Set Route with net-tools manually**
 
 ```bash
 # e.g.
-
 sudo route add -net 172.16.0.0/16 tun0
 ```
 
-### Cleanup Tips
+**Cleanup Tips**
 
-#### Clean PKG
+Clean PKG:
 
 * sudo pacman -Sc
 
@@ -1390,66 +1230,58 @@ sudo route add -net 172.16.0.0/16 tun0
   * For this enter:
 
     ```
-    
     [Unit]
-    
     Description=Clean-up old pacman pkg
     
     [Timer]
-    
     OnCalendar=monthly
-    
     Persistent=true
     
     [Install]
-    
     WantedBy=multi-user.target
-    
     ```
 
-#### Remove Orphans
+**Remove Orphans**
 
 ```bash
 sudo pacman -R $(pacman -Qtdq)
 ```
 
-#### Clean Cache in /home
+**Clean Cache in /home**
 
 ```bash
 du -sh ~/.cache/    # Size of Cache
-
 rm -rf ~/.cache/*
 ```
 
-#### Remove old config files
+**Remove old config files**
 
 -> ~/.config und ~/.local/share
 
 Remove them manualy! (only uninstalled files recommended)
 
-#### Find and remove duplicates, empty files, empty dirs, broken symlinks
+**Find and remove duplicates, empty files, empty dirs, broken symlinks**
 
 ```bash
 sudo pacman -S rmlint
-
 rmlint --help
-
 rmlint /home/user     #Scans folder and saves special script to remove findings (read results)
 ```
 
-#### Find the largest files and directories
+**Find the largest files and directories**
 
 ```bash
 sudo pacman -S ncdu
-
 ncdu   # Run tool (command line)
 ```
 
-#### Clean Trash (Remember)
+**Clean Trash (Remember)**
 
 You know how to do that ;)
 
 ### Resize Partition(s)
+
+## Unsorted in German
 
 [https://wiki.ubuntuusers.de/Dateisystemgr%C3%B6%C3%9Fe_%C3%A4ndern/](Source)
 
@@ -1551,15 +1383,9 @@ Like Gnome, GDM auto-scales by default
 makepkg --skipchecksums -si
 ```
 
+## Arch Linux - Music Production - Installation Guide
 
-
-
-
-### !!!Music Production!!!
-
-# Arch Linux - Music Production - Installation Guide
-
-## Pre Requirements
+**Pre Requirements**
 
 - Follow the Installation Guide on [the Website](https://normannator.de/archlinux) and choose your way into Arch.
 
@@ -1573,9 +1399,7 @@ makepkg --skipchecksums -si
 
 This Setup Process was tested with Manjaro KDE. (Pulse Audio included)
 
-## Installation Guide
-
-### JACK Audio Server
+**JACK Audio Server**
 
 Hold all audio work together. Make sure Version 2 is installed (has more features, do not use Version 1!).
 
@@ -1583,7 +1407,7 @@ Hold all audio work together. Make sure Version 2 is installed (has more feature
 sudo pacman -S jack2
 ```
 
-### Cadence JACK toolbox
+**Cadence JACK toolbox**
 
 Control Panel for Production Audio work
 
@@ -1603,7 +1427,7 @@ Open Cadence and Coose in the Settings:
 
 Feel free to experiment with some of the shipped internal tools of *Cadence* later ;)
 
-### Configuring User Permissions (the audio group)
+**Configuring User Permissions (the audio group)**
 
 We make sure now, to get the user in the group audio get *real-time scheduling* (the permission to get more CPU time)
 
@@ -1611,17 +1435,10 @@ This steps are explained in more details [here](https://jackaudio.org/faq/linux_
 
 ```bash
 groups #show groups
-
-
-
 cd /etc/security/
-
 sudo nano limits.conf
-
 Ctrl+W # Search: audio
-
 # -> If not found, follow on
-
 # Go to end of the file
 ```
 
@@ -1629,9 +1446,7 @@ Insert this:
 
 ```bash
 # audio group
-
 @audio        -        rtprio        95
-
 @audio        -        memlock        unlimited
 ```
 
@@ -1641,17 +1456,13 @@ Now log out and log back in to make the changes take affect.
 
 Now Start the Cadence Server - Everything should work
 
-### Ardour - DAW
+**Ardour - DAW**
 
 ```bash
 sudo pacman -S ardour
 
-
-
 # Optional
-
 sudo pacman -S xjadeo  # A simple video player that is synchronized to jack (work with film files on music production base)
-
 sudo pacman -S harvid  # HTTP Ardour Video Daemon
 ```
 
@@ -1665,7 +1476,7 @@ Change Font Size: Preferences -> Appearance -> GUI and Font Scaling
 
 Maybe also take a look at [PW](https://pipewire.org/)
 
-### Maybe install RealTime Kernel
+**Maybe install RealTime Kernel**
 
 Linux Real Time Kernel might increase Performance but it is not necessary.
 
@@ -1679,11 +1490,11 @@ uname -a  # Check if the installation was successful
 
 Make sure to test the RT Kernal first, before removing the other on!
 
-### Install more Audio Software
+**Install more Audio Software**
 
 If you want to install lots of Plugins / VST in a row, use the *pro-audio* group for your installation (Nice overview in *Octopi*)
 
-#### Zyn-Fusion (new user interface to ZynAddSubFX 3)
+**Zyn-Fusion (new user interface to ZynAddSubFX 3)**
 
 ```bash
 yay -S zyn-fusion
@@ -1707,31 +1518,31 @@ Testing:
 
 NOTE: Test all Plugins / VST your will install below
 
-#### Surge
+**Surge**
 
 ```bash
 yay -S surge-synthesizer-bin
 ```
 
-#### Calf
+**Calf**
 
 ```bash
 sudo pacman -S calf
 ```
 
-#### LSP
+**LSP**
 
 ```bash
 sudo pacman -S lsp-plugins
 ```
 
-#### Tap
+**Tap**
 
 ```bash
 sudo pacman -S tap-plugins
 ```
 
-#### More Plugins (form the pro-audio Group -> Pacman)
+**More Plugins (form the pro-audio Group -> Pacman)**
 
 - audacity
 
@@ -1795,24 +1606,16 @@ sudo pacman -S tap-plugins
 
 - zita-rev1
 
-#### Install Plugins from the AUR
+**Install Plugins from the AUR**
 
 - Bitrot-git
 
 - invada-studio-plugins-lv2
 
--
-
--
-
--
-
-#### PulseAudio Jack Module
+**PulseAudio Jack Module**
 
 ```bash
 sudo pacman -S pulseaudio-jack
-
 # or
-
 yay -S vcvrack-bin  # -> ASLA to JACK, Sound to System-Sound
 ```
