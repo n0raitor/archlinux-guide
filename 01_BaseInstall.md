@@ -425,3 +425,5 @@ exit  # leave arch-chroot
 umount -a  # Unmount all devices
 reboot
 ```
+
+Continue to **02_DesktopEnvironment**

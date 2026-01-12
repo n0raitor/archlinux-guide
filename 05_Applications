@@ -247,3 +247,5 @@ sudo pacman -S lutris
 ```bash
 yay -S itch-bin 
 ```
+
+You are done! Feel free to get some Maintenance impressions in **06_Maintenance**
