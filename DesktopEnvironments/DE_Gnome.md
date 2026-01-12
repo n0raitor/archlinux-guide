@@ -3,7 +3,8 @@
 Gnome:
 
 ```bash
-sudo pacman -S gnome gdm gnome-shell-extensions gnome-tweaks extension-manager
+sudo pacman -S gnome gdm gnome-shell-extensions gnome-terminal gnome-tweaks extension-manager
+sudo pacman -S gnome-shell-extension-caffeine
 sudo systemctl enable gdm.service
 ```
 

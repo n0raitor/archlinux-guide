@@ -23,10 +23,18 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 ## Recommended Tools and Programs in one Block**
 
 ```bash
-sudo pacman -S wireless_tools qbittorrent gnome-keyring evolution vlc obs-studio handbrake brasero audacity gimp gimp-help-de darktable krita calibre gnome-builder python-pip ipython gparted bleachbit xreader libreoffice-still libreoffice-still-de hunspell hunspell-en_us hunspell-de mythes aspell aspell-de aspell-en mythes mythes-en  mythes-de languagetool enchant libmythes speech-dispatcher protonmail-bridge-core kdenlive signal-desktop filelight baobab bleachbit glances htop gnome-disk-utility gparted hwinfo nano-syntax-highlighting neofetch gnome-firmware obsidian firefox gnome-builder pycharm-community-edition gnome-boxes
+sudo pacman -S wireless_tools qbittorrent gnome-keyring evolution vlc obs-studio handbrake brasero audacity gimp gimp-help-de darktable krita calibre gnome-builder python-pip ipython gparted bleachbit xreader libreoffice-still libreoffice-still-de hunspell hunspell-en_us hunspell-de mythes aspell aspell-de aspell-en mythes mythes-en  mythes-de languagetool enchant libmythes speech-dispatcher protonmail-bridge-core kdenlive signal-desktop filelight baobab bleachbit glances htop gnome-disk-utility gparted hwinfo nano-syntax-highlighting gnome-firmware obsidian firefox gnome-builder pycharm-community-edition gnome-boxes code
 
-yay -S jdownloader2 openshot balena-etcher guitar-pro yed vscodium-bin github-desktop-bin zotero-bin libreoffice-extension-languagetool marktext-bin
+yay -S jdownloader2 
+yay -S balena-etcher 
+yay -S yed 
+yay -S github-desktop-bin 
+yay -S zotero-bin 
+yay -S libreoffice-extension-languagetool 
+yay -S marktext-bin
+yay -S neofetch
 
+# Optional (Python Required)
 pip3 install pylint
 ```
 
@@ -109,24 +117,17 @@ yay -S stacer-bin
 
 [Link](https://wiki.archlinux.de/title/Graphische_Paketmanager)
 
+**Octopi**
+```bash
+sudo pacman -S octopi
+```
+
 **Pamac**
 
 A Package Manager for Arch Linux Pacman Packages
 
 ```bash
-sudo pacman -S appstream-glib
-yay -S archlinux-appstream-data-pamac
-yay -S snapd-glib
-
-git clone https://aur.archlinux.org/libpamac-aur.git
-cd libpamac
-nano PKGBUILD  # Edit PKGBUILD
-# SET
-ENABLE_FLATPAK=1
-ENABLE_SNAPD=1
-makepkg -si
-
-yay -S pamac-aur
+sudo pacman -S pamac
 ```
 
 **Gnome Software**
@@ -186,6 +187,13 @@ pacman -Ss <package_name>
 # you experience "failed to commit transaction" errors, use the --needed and --overwrite switches
 # For example:
 sudo pacman -Syyu --needed --overwrite='*' <wanted-package> 
+```
+
+Example:
+```bash
+sudo pacman -S blackarch-windows blackarch-dos blackarch-disassembler blackarch-networking blackarch-recon blackarch-cracker blackarch-forensic blackarch-wireless blackarch-binary blackarch-packer blackarch-reversing blackarch-mobile blackarch-malware blackarch-code-audit blackarch-social blackarch-wordlist blackarch-decompiler blackarch-debugger blackarch-bluetooth blackarch-unpacker blackarch-stego
+
+# If Dependencies of some packages are missing, skip them! (y if asked)
 ```
 
 ---

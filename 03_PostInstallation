@@ -137,6 +137,8 @@ sudo pacman -S powertop
 ```bash
 sudo pacman -S zsh zsh-syntax-highlighting zsh-autosuggestions zsh-completions
 yay -S zsh-theme-powerlevel10k
+yay -S --noconfirm zsh-theme-powerlevel10k-git
+echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 ```
 
 **Arch Artworks**
