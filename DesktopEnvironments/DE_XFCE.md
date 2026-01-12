@@ -1,7 +1,7 @@
 # XFCE
 
 ```bash
-sudo pacman -S xfce4 xfce4-goodies lightdm lightdm-gtk-greeter
+sudo pacman -S xfce4 xfce4-goodies lightdm lightdm-gkt-greeter-settings lightdm-gtk-greeter
 sudo systemctl enable lightdm
 ```
 
@@ -17,3 +17,16 @@ For Kali-Style use:
 
 **Themes**
 Use Flat-Remix
+
+```bash
+sudo pacman -S xfce4-whiskermenu-plugin xfce4-session xfce4-pulseaudio-plugin sound-theme-freedesktop sound-theme-smooth 
+yay -S sound-theme-smooth xfce4-volumed-pulse xfce4-mixer xfce4-screensaver
+```
+
+**Popup Menu on Windows-Icon**
+In Keyboard Shortcuts set xfce4-popup-whiskermenu run on windows-key
+
+```bash
+sudo pacman -S redshift
+sudo systemctl enable redshift
+```

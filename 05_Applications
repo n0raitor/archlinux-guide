@@ -249,3 +249,9 @@ yay -S itch-bin
 ```
 
 You are done! Feel free to get some Maintenance impressions in **06_Maintenance**
+
+## Other
+
+```bash
+sudo pacman -S vivaldi vivaldi-ffmpeg-codecs
+```
