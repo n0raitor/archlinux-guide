@@ -1,0 +1,255 @@
+## !!!Post Installation!!!
+
+In Your Desktop Environment, open a Terminal an continue here:
+
+**Updates**
+
+```bash
+# Update System
+sudo pacman -Syu
+
+sudo nano /etc/pacman.conf
+# Uncomment Color
+# (dep) Uncomment ParallelDownloads
+# Add ILoveCandy (underneath ParallelDownloads)
+# uncomment multilib Repo (2 Lines) (32bit Software Repo)+
+
+sudo pacman -Sy
+
+### Segnature Security ###
+sudo pacman -S archlinux-keyring  # Update keyring
+
+# If it fails, Make sure your System Time is right
+```
+
+**YAY (AUR Installer CLI)**
+
+Change to User - This is required, because yay can't run as root as it uses the fake root (which is non-root user context only) to install packages from AUR.
+
+```bash
+su <username>
+```
+
+```bash
+# Install YAY - simple AUR Package Installation
+cd ~
+git clone https://aur.archlinux.org/yay.git
+cd yay/
+makepkg -si PKGBUILD
+```
+**!!!NOW STAY IN USER MODE!!!** to get the commands working
+
+**(Optional / Dep) Sound System**
+
+```bash
+sudo pacman -S alsa-plugins alsa-utils pulseaudio pulseaudio-alsa
+sudo pacman -S pulseaudio-bluetooth  # Bluetooth Support
+sudo pacman -S pulseaudio-equalizer  # Optional
+```
+
+**Tools / Utilities / Recommended Packages**
+
+Configuration tools for Linux networking
+
+```bash
+sudo pacman -S xdg-user-dirs net-tools wget curl ufw gufw dialog usbutils zip unzip unrar p7zip lzop ntfs-3g gvfs timeshift gst-plugins-base gst-plugins-good gst-plugins-ugly
+```
+
+**Fonts**
+
+These Fonts are for System Appearance and Document Creation Use-Cases
+
+```bash
+sudo pacman -S ttf-bitstream-vera ttf-dejavu ttf-liberation adobe-source-sans-pro-fonts ttf-anonymous-pro ttf-droid ttf-ubuntu-font-family ttf-roboto ttf-roboto-mono ttf-font-awesome ttf-fira-code
+yay -S ttf-hackgen ttf-gentium-basic ttf-ms-fonts ttf-nerd-fonts-hack-complete-git ttf-mac-fonts
+```
+
+**Printer**
+
+```bash
+sudo pacman -S cups cups-pdf
+sudo systemctl enable cups
+sudo systemctt disable systemd-resolved.service
+sudo systemctl enable avahi-daemon
+```
+
+Setup CUPS:
+
+```bash
+sudo pacman -S system-config-printer
+```
+
+Install Your Brother Printer Driver:
+
+```bash
+yay -S <Printer Driver ID> (Search yay -Ss or in Pamac)  # e.g. brother-dcpj315w
+sudo lpadmin -p dcpj315w -v lpd://${printer-ip}/BINARY_P1
+
+# opt-dep
+
+yay -S brscan3
+```
+
+Finally:
+
+* get IP-Addresse of your Printer:
+
+* Open CUPS web interface and use "search new Printer"
+
+* Select your Network Printer and click "add"
+
+* Follow the instructions and use the driver you just installed
+
+* Use the "system-config-printer" application to remove the printer "dcpj315w"
+
+* Print :)
+
+NOTE: You may test this multiple times: Use the Test-Print Button to test the connectivity
+
+
+**(optional / dep) Bluetooth**
+
+```bash
+sudo pacman -S bluez bluez-utils
+sudo systemctl enable bluetooth
+```
+
+**Alternative Power Management Tools:**
+Make sure to disable TLP if you choose on of these.
+
+[auto-cpufreq]([https://github.com/AdnanHodzic/auto-cpufreq)
+
+```bash
+yay -S auto-cpufreq
+sudo systemctl enable auto-cpufreq
+```
+
+Powertop:
+
+* **Powertop** is a tool provided by Intel to enable various powersaving modes in userspace, kernel and hardware. It is possible to monitor processes and show which of them are utilizing the CPU and wake it from its Idle-States, allowing to identify applications with particular high power demands.
+
+```bash
+sudo pacman -S powertop
+```
+
+### ZSH
+
+```bash
+sudo pacman -S zsh zsh-syntax-highlighting zsh-autosuggestions zsh-completions
+yay -S zsh-theme-powerlevel10k
+```
+
+**Arch Artworks**
+
+```bash
+yay -S archlinux-artwork
+```
+
+**Arch Wallpaper**
+
+```bash
+yay -S arch-logo-dark-wallpapers
+yay -S arch-linux-2d-wallpapers
+```
+
+**Terminal Color Scheme**
+
+[Gogh](http://mayccoll.github.io/Gogh/)
+
+```bash
+bash -c "$(curl -sLo- https://git.io/vQgMr)"gpar
+```
+
+**Reduce Swappiness**
+
+Forces System to use as much RAM as possible and reduces hard drive access
+
+```bash
+cat /proc/sys/vm/swappiness  # 60 by DEFAULT
+sudo nano /etc/sysctl.d/100-archlinux.conf
+-> vm.swappiness=10
+reboot
+
+cat /proc/sys/vm/swappiness  # should be 10 now
+```
+
+**Trim SSD**
+
+Enable Trim for SSD - optimize performance of ssd-drive
+
+```bash
+sudo systemctl status fstrim.timer  # should be inactive, if not, skip to next heading
+sudo systemctl start fstrim.timer
+sudo systemctl status fstrim.timer  # should be active now
+```
+
+**Bash**
+
+*use the dotfiles!*
+
+```bash
+sudo nano /etc/profile.d/editor.sh  # set default global editor
+```
+
+**Kali Linux Shell**
+
+If you want a more "Kali" like shell, feel free to install [this](https://wiki.archlinux.org/index.php/zsh) shell.
+
+**Man Page - German Edition**
+
+```bash
+sudo pacman -S man-pages-de
+alias man="LANG=de_DE.UTF-8 man"  # Write to ~/.bashrc or ~/.zshrc
+```
+
+**Most**
+
+```bash
+#Install Most for Manual Page highlighting
+sudo pacman -S most
+export PAGER=most
+# See results on "man mv"
+```
+
+**Generate MIrrorlist of your Country**
+
+```bash
+reflector --verbose --country 'Germany' -l 200 -p https --sort rate --save /etc/pacman.d/mirrorlist
+```
+
+###### Generate SSH-Key
+
+```bash
+ssh-keygen -t rsa -b 4096 -o -a 100
+```
+
+**(optional) Enable SSH**
+
+```bash
+sudo systemctl enable sshd
+sudo systemctl start sshd
+# -> Already done, if not, run this commands
+```
+
+**OpenVPN**
+
+```bash
+sudo pacman -S openvpn networkmanager-openvpn
+sudo systemctl restart NetworkManager
+```
+
+**OpenConnect**
+
+```bash
+sudo pacman -S openconnect networkmanager-openconnect
+sudo systemctl restart NetworkManager
+```
+
+**Thumbnailer**
+
+```bash
+# Lightweight video thumbnailer that can be used by file managers.
+sudo pacman -S ffmpegthumbnailer  
+```
+
+

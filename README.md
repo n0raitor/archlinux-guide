@@ -4,6 +4,12 @@ This is my 2026 created guide of all things archlinux I learned over the past 7 
 
 Tested Release: 2026.01.01
 
+Feel free to Follow the Markdown Files by starting from the lowest number to the highest. On DE (Desktop Environments): Only select one is recommended.
+
+If any error occures, feel free to create an issue.
+
+Have fun and go the Arch way!
+
 ## !!!Welcome!!!
 
 In this Installation Guide, I will explain my default Setup for ArchLinux with LUKS Drive-Encryption and EFI.
@@ -13,10 +19,6 @@ You can follow the full installation guide and choose a desktop environment to i
 For a much simpler installation using a Desktop Environment from a Live Arch Linux OS, feel free to use my Prebuild Arch Linux Live IMAGES on SourceForge.
 
 [![Download ArchLinux Live ISO Prebuild](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/archlinux-live-iso-prebuild/files/latest/download)
-
-If you have any question about this Guide, feel free to create an issue.
-
-
 
 **How to Copy Paste / Install these Commands**
 
@@ -34,7 +36,7 @@ On Original ArchLinux Iso:
 
 * After the desktop environment is installed, feel free to copy and paste the code snippes.
 
-
+Continue with **01_BaseInstall**
 
 ## !!!Preparation!!!
 
@@ -173,8 +175,6 @@ nano /etc/pacman.d/mirrorlist
 ```bash
 pacstrap /mnt base base-devel linux-lts linux linux-headers linux-lts-headers linux-firmware nano networkmanager dhcpcd lvm2 reflector git cryptsetup grub efibootmgr dosfstools os-prober mtools iwd openssh
 ```
-
-
 
 ## !!!Configure System!!!
 
@@ -476,8 +476,6 @@ umount -a  # Unmount all devices
 reboot
 ```
 
-
-
 ## !!!Post Installation!!!
 
 **Updates**
@@ -590,8 +588,6 @@ sudo pacman -S zsh zsh-syntax-highlighting zsh-autosuggestions zsh-completions
 yay -S zsh-theme-powerlevel10k
 ```
 
-
-
 ## Next Steps in the Desktop Environment
 
 Create a Snapshot with **Timeshift**
@@ -611,15 +607,19 @@ For HiDPI (choose one):
 General INIT Maintenance:
 
 - Go through the settings of Gnome and adjust it to your choice.
+  
   - We will edit the default Applications later
+  
   - Add Keyboard shortcut:
+    
+    - gnome-terminal (on CTRL + ALT + T)
+      
+      - nautilus (on CTRL + ALT + E)
+        
+        - xkill (on CTRL + ALT + ESC)
 
-      - gnome-terminal (on CTRL + ALT + T)
-
-          - nautilus (on CTRL + ALT + E)
-
-              - xkill (on CTRL + ALT + ESC)
 - Enable Firewall
+
 - Gnome Num-Lock:
 
 Set NumKey Enabled:
@@ -670,7 +670,7 @@ Visit [https://extensions.gnome.org/](https://extensions.gnome.org/)
 * Resource Monitor or System Monitor
 
 * [Blur my Shell](https://extensions.gnome.org/extension/3193/blur-my-shell/)
-
+  
   * IMPORTANT: The default dock (or Dash-to-Dock Ext) can get a shadow effect by enabling this extension. Tweak the settings (especially: Panel and Dock, disable it) to get rid of it
 
 * DEP: Dynamic Panel Transparency
@@ -686,19 +686,19 @@ Visit [https://extensions.gnome.org/](https://extensions.gnome.org/)
 * Workspace Indicator
 
 * NEW:
-
+  
   * Desktop Cube
-
+  
   * #Useless Gaps
-
+  
   * #Fly-Pie
-
+  
   * #Compiz windows effect
-
+  
   * Toggle Night Light
-
+  
   * Night Theme Switcher
-
+  
   * Window Is Ready - Notification Remover
 
 **Styles in Gnome**
@@ -886,8 +886,6 @@ yay -S pamac-aur
 sudo pacman -S gnome-softwarte
 ```
 
-
-
 ## Other Tools
 
 **No Adobe - Use the Libre Graphics Suite**
@@ -916,8 +914,6 @@ Installation:
 sudo pacman -S nmap wireshark-qt hashcat
 yay -S ida-free ghidra edb-debugger-git maltego burpsuite
 ```
-
-
 
 **Blackarch**
 
@@ -948,8 +944,6 @@ pacman -Ss <package_name>
 sudo pacman -Syyu --needed --overwrite='*' <wanted-package> 
 ```
 
-
-
 ---
 
 **.RST Reader**
@@ -964,8 +958,6 @@ virtualenv venv # The second system I used just used 'virtualenv venv'
 ./venv/bin/pip install restview
 ./venv/bin/restview ~/path/MANUAL.rst
 ```
-
-
 
 ****
 
@@ -1000,29 +992,37 @@ sudo pacman -S lutris
 [itch.io](https://en.wikipedia.org/wiki/itch.io) — Indie game store. [https://itch.io/](https://itch.io/) || [itch](https://aur.archlinux.org/packages/itch/)AUR
 
 ```bash
-yay -S itch-bin
+yay -S itch-bin 
 ```
-
-Legendary — A free and open-source replacement for the Epic Games Launcher. [GitHub - derrod/legendary: Legendary - A free and open-source replacement for the Epic Games Launcher](https://github.com/derrod/legendary) || [legendary](https://aur.archlinux.org/packages/legendary/)AUR
-
-Heroic Games Launcher — A GUI for legendary, an open-source alternative for the Epic Games Launcher. [GitHub - Heroic-Games-Launcher/HeroicGamesLauncher: A Native GOG and Epic Games Launcher for Linux, Windows and Mac.](https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher) || [heroic-games-launcher-bin](https://aur.archlinux.org/packages/heroic-games-launcher-bin/)AUR
-
-## Synology
-
-```bash
-yay -S synology-drive
-yay -S synology-note-station
-```
-
-
 
 ## !!!Final Steps!!!
 
-### Bash
+**Reduce Swappiness**
+
+Forces System to use as much RAM as possible and reduces hard drive access
+
+```bash
+cat /proc/sys/vm/swappiness  # 60 by DEFAULT
+sudo nano /etc/sysctl.d/100-archlinux.conf
+-> vm.swappiness=10
+reboot
+
+cat /proc/sys/vm/swappiness  # should be 10 now
+```
+
+**Trim SSD**
+
+Enable Trim for SSD - optimize performance of ssd-drive
+
+```bash
+sudo systemctl status fstrim.timer  # should be inactive, if not, skip to next heading
+sudo systemctl start fstrim.timer
+sudo systemctl status fstrim.timer  # should be active now
+```
+
+**Bash**
 
 *use the dotfiles!*
-
-#### OR
 
 ```bash
 sudo nano /etc/profile.d/editor.sh  # set default global editor
@@ -1044,7 +1044,7 @@ export PAGER=most
 # See results on "man mv"
 ```
 
-### Use Reflector as above
+**Generate MIrrorlist of your Country**
 
 ```bash
 reflector --verbose --country 'Germany' -l 200 -p https --sort rate --save /etc/pacman.d/mirrorlist
@@ -1056,13 +1056,11 @@ reflector --verbose --country 'Germany' -l 200 -p https --sort rate --save /etc/
 ssh-keygen -t rsa -b 4096 -o -a 100
 ```
 
-### Main Maintenance
-
-**SSH**
+**(optional) Enable SSH**
 
 ```bash
-# sudo systemctl enable sshd
-# sudo systemctl start sshd
+sudo systemctl enable sshd
+sudo systemctl start sshd
 # -> Already done, if not, run this commands
 ```
 
@@ -1085,14 +1083,6 @@ sudo systemctl restart NetworkManager
 ```bash
 # Lightweight video thumbnailer that can be used by file managers.
 sudo pacman -S ffmpegthumbnailer  
-```
-
-## !!!Maintenance!!!
-
-Maybe fixes pacman issues
-
-```bash
-pacman-key --refresh-keys  # Refresh pacman keys
 ```
 
 **Setup CUPS**
@@ -1128,84 +1118,7 @@ Finally:
 
 NOTE: You may test this multiple times: Use the Test-Print Button to test the connectivity
 
-**Activating NumLock on Bootup**
-
-```bash
-gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true
-```
-
-In order to remember last state of numlock key (whether you disabled or enabled), use:
-
-```bash
-gsettings set org.gnome.desktop.peripherals.keyboard remember-numlock-state true
-```
-
-Note: The key *numlock-state* was moved from *org.gnome.settings-daemon.peripherals.keyboard* since GNOME 3.34
-
-Alternatively, you can use add *numlockx* on (from numlockx to a startup script, like */.bashrc* (if using Bash) or */.profile.*
-
-**Remove Orphans**
-
-```bash
-sudo pacman -Rns $(pacman -Qtdq)  # Removes unused Packages
-yay -Sc  # Removes Cache of YAY
-# Also: https://ostechnix.com/recommended-way-clean-package-cache-arch-linux/
-```
-
-**Optimize pacman's database access speeds**
-
-```bash
-sudo pacman-optimize
-```
-
-**Reduce Swappiness**
-
-Forces System to use as much RAM as possible and reduces hard drive access
-
-```bash
-cat /proc/sys/vm/swappiness  # 60 by DEFAULT
-sudo nano /etc/sysctl.d/100-archlinux.conf
--> vm.swappiness=10
-reboot
-
-cat /proc/sys/vm/swappiness  # should be 10 now
-```
-
-**Trim SSD**
-
-Enable Trim for SSD - optimize performance of ssd-drive
-
-```bash
-sudo systemctl status fstrim.timer  # should be inactive, if not, skip to next heading
-sudo systemctl start fstrim.timer
-sudo systemctl status fstrim.timer  # should be active now
-```
-
-**Make Arch Stable (Golden Rules)**
-
-1. Do Backups with Timeshift and BtrFS
-
-2. Update only every Week
-
-3. Install Linux and Linux-LTS but us the LTS Kernal. If the System breaks, you can switch to the non LTS Kernal when the system is not booting. (use: ```uname -sr``` to check the current used kernel)
-
-4. Ignore Linux Packages on Update (pacman.conf -> ignorepkg = Linux)
-
-5. Do not install out of date packages! Use the AUR Page and search under package actions: *Flagged out-of-date (2019 <year not updeated>)*. You can also see this in the aur-tool logs!
-
-**Check for errors**
-
-```bash
-sudo systemctl --failed sudo journalctl -p 3 -xb
-```
-
-**(optional) Backup your System manually**
-
-```bash
-sudo rsync -aAXvP --delete --exclude=/dev/* --exclude=/proc/* --exclude=/sys/* --exclude=/tmp/* --exclude=/run/* --exclude=/mnt/* --exclude=/media/* --exclude=/lost+found --exclude=/home/.ecryptfs / /mnt/backupDestination/
-```
-
-## Set Dual Boot
+## Set up Dual Boot with Windows
 
 In general
 
@@ -1241,420 +1154,6 @@ If a message appears: *Os-prober will not be executed*
 
 Solution: Set the named constant to the default/grub file as False (don't forget to uncommand the line)
 
-**Set Route with net-tools manually**
-
-```bash
-# e.g.
-sudo route add -net 172.16.0.0/16 tun0
-```
-
-**Cleanup Tips**
-
-Clean PKG:
-
-* sudo pacman -Sc
-
-* or install *pacman-contrib*
-
-  * paccache -h    # help page
-
-  * ... -d  #Dry Mode (just list packages to remove)
-
-  * .... -r  #Remove Packages from Dry Mode
-
-* oder mit paccache.timer jeden Monat automatisch bereinigen
-
-  * sudo nano /etc/systemd/system/paccache.timer
-
-  * For this enter:
-
-    ```
-    [Unit]
-    Description=Clean-up old pacman pkg
-    
-    [Timer]
-    OnCalendar=monthly
-    Persistent=true
-    
-    [Install]
-    WantedBy=multi-user.target
-    ```
-
-**Remove Orphans**
-
-```bash
-sudo pacman -R $(pacman -Qtdq)
-```
-
-**Clean Cache in /home**
-
-```bash
-du -sh ~/.cache/    # Size of Cache
-rm -rf ~/.cache/*
-```
-
-**Remove old config files**
-
--> ~/.config und ~/.local/share
-
-Remove them manualy! (only uninstalled files recommended)
-
-**Find and remove duplicates, empty files, empty dirs, broken symlinks**
-
-```bash
-sudo pacman -S rmlint
-rmlint --help
-rmlint /home/user     #Scans folder and saves special script to remove findings (read results)
-```
-
-**Find the largest files and directories**
-
-```bash
-sudo pacman -S ncdu
-ncdu   # Run tool (command line)
-```
-
-**Clean Trash (Remember)**
-
-You know how to do that ;)
-
-### Resize Partition(s)
-
-## Unsorted in German
-
-[https://wiki.ubuntuusers.de/Dateisystemgr%C3%B6%C3%9Fe_%C3%A4ndern/](Source)
-
-Um die Größe von Dateisystemen ändern zu können, müssen je nach Dateisystem verschiedene Hilfsprogramme ("tools") installiert sein:
-
-* e2fsprogs (liefert resize2fs)
-
-* reiserfsprogs
-
-* xfsprogs
-
-* jfsutils
-
-* ntfs-3g
-
-#### Anpassen der Dateisysteme**
-
-**ext2 / ext3 / ext4**
-
-Um ein ext3-Dateisystem anzupassen, darf es nicht eingehängt oder fehlerhaft sein. Seit Linux Kernel 2.6.10 kann man ext3 (nicht ext2)-Dateisysteme auch im eingehängten Zustand vergrößern, nicht jedoch verkleinern! Es ist sinnvoll, jedoch nicht nötig, das Dateisystem zuvor mit "e2fsck" auf Fehler zu überprüfen.
-
-```bash
-sudo resize2fs -p /dev/gerätename   # Vergrößert das Dateisystem bis zur maximalen Größe des Logical Volumes oder der Partition
-
-sudo resize2fs -M /dev/gerätename   # Verkleinert das Dateisystem bis zur minimalen Größe des Logical Volumes oder der Partition
-
-sudo resize2fs -p /dev/gerätename 5G   # Vergrößert bzw. Verkleinert das Dateisystem auf 5 Gibibyte Gesamtgröße
-
-sudo resize2fs -P /dev/gerätename   # Gibt die Minimalgröße an, wie weit das Dateisystem verkleinert werden kann
-```
-
-NOTE: Für Größenangaben (im Beispiel 5G) verwendet "resize2fs" den Teiler 1024, nicht 1000!
-
-NOTE: Der im Beispiel verwendete Parameter -p von "resize2fs" dient dazu, einen Fortschrittsbalken beim Anpassen des Dateisystems anzuzeigen.
-
-**NTFS**
-
-Um ein NTFS-Dateisystem anzupassen, darf es nicht eingehängt oder fehlerhaft sein. Auf dem Dateisystem dürfen keine NTFS-verschlüsselten oder NTFS-komprimierten Dateien oder Ordner liegen, ein vorherige Defragmentierung ist ratsam, jedoch nicht erforderlich.
-
-```bash
-sudo ntfsresize /dev/gerätename   # Vergrößert das Dateisystem bis zur maximalen Größe des Logical Volumes oder der Partition
-
-sudo ntfsresize -n --size 5G /dev/gerätename  # Vergrößert bzw. Verkleinert das Dateisystem auf 5 Gigabyte Gesamtgröße, Testlauf im Read-only-Modus (empfehlenswert!)
-
-sudo ntfsresize --size 5G /dev/gerätename     # Vergrößert bzw. Verkleinert das Dateisystem auf 5 Gigabyte Gesamtgröße
-
-sudo ntfsresize -i /dev/gerätename  # Zeigt an, auf welche Größe das Dateisystem minimal verkleinert werden kann
-```
-
-NOTE: Der --size Parameter von "ntfsresize" verwendet den Teiler 1000 statt der üblichen 1024 beim Umrechnen von Gigabyte in Megabyte usw..., dies sollte beim Anpassen des Dateisystems beachtet werden! Bei der Verkleinerung ist darauf zu achten mindestens ca. 70 Mbyte über dem Minimalwert (Parameter -i) einzugeben!
-
-NOTE: Um die NTFS-Kompression einzelner Dateien auf einem NTFS-Laufwerk als vorbereitende Maßnahme für ntfsresize abzustellen bzw. rückgängig zu machen, kann man entweder die Eigenschaften jeder einzelnen Datei manuell bearbeiten oder aber in der Windows-Eingabeaufforderung den folgenden Befehl zur Dekomprimierung aller betroffenen Datein nutzen:
-
-```
-compact /U /S:\ /I
-```
-
-**FAT32**
-
-Ein FAT32-Dateisystem kann mit dem Programm Parted angepasst werden. Zunächst muss das Dateisystem mit umount ausgehängt werden. Anschließend startet man Parted als root wie hier beschrieben. Mit dem Befehl
-
-```
-print
-```
-
-kann man sich einen Überblick über die Partitionen der Festplatte geben lassen. Um den Vergrößerungs- bzw- Verkleinerungsvorgang zu starten, schreibt man
-
-```
-resize [NR] [START] [ENDE]
-```
-
-in die Befehlszeile von Parted, wobei [NR]für die Nummer der Partition laut der "print"-Ausgabe ist; [START] steht für die neue Startposition der Partition (z.B. 0 für den Anfang der Festplatte, 200MB als absolute Größe oder 10% als relative Größe), und [ENDE] bezeichnet die Endposition (ebenfalls als absolute oder relative Größe).
-
 ### Improve Performance
 
 [https://wiki.archlinux.org/title/improving_performance](https://wiki.archlinux.org/title/improving_performance)
-
-### HiDPI Support of Desktop Environments
-
-[Source](https://archived.forum.manjaro.org/t/hidpi-support-in-manjaro/26088)
-
-**Gnome**
-
-HiDPI Support in Gnome is excellent. It auto-scales by default and is completely usable out of the box
-
-To install gnome reference the appropriate Wiki page 679
-
-Gnome autoscales the interface by default. If it doesn't you can run the run the "dconf Editor" and go under org->gnome->desktop->interface->scaling-factor and change it manually
-
-To change the cursor size run the "dconf Editor" and go under org->gnome->desktop->interface->cursor-size
-
-**GDM**
-
-Like Gnome, GDM auto-scales by default
-
-### AUR Checksum Skip
-
-```bash
-makepkg --skipchecksums -si
-```
-
-## Arch Linux - Music Production - Installation Guide
-
-**Pre Requirements**
-
-- Follow the Installation Guide on [the Website](https://normannator.de/archlinux) and choose your way into Arch.
-
-- Package Requirements
-
-  - Timeshift
-
-  - YAY
-
-  - octopi (if you prefer a Frontend for Pacman)
-
-This Setup Process was tested with Manjaro KDE. (Pulse Audio included)
-
-**JACK Audio Server**
-
-Hold all audio work together. Make sure Version 2 is installed (has more features, do not use Version 1!).
-
-```bash
-sudo pacman -S jack2
-```
-
-**Cadence JACK toolbox**
-
-Control Panel for Production Audio work
-
-```bash
-sudo pacman -S cadence
-```
-
-Open Cadence and Coose in the Settings:
-
-- Driver -> ALSA -> Select Interface
-
-- Engine -> Check Realtime
-
-- (evtl. Realitme Priority: 95)
-
-  Do not try to Start the JACK Server now, we do that later
-
-Feel free to experiment with some of the shipped internal tools of *Cadence* later ;)
-
-**Configuring User Permissions (the audio group)**
-
-We make sure now, to get the user in the group audio get *real-time scheduling* (the permission to get more CPU time)
-
-This steps are explained in more details [here](https://jackaudio.org/faq/linux_rt_config.html)
-
-```bash
-groups #show groups
-cd /etc/security/
-sudo nano limits.conf
-Ctrl+W # Search: audio
-# -> If not found, follow on
-# Go to end of the file
-```
-
-Insert this:
-
-```bash
-# audio group
-@audio        -        rtprio        95
-@audio        -        memlock        unlimited
-```
-
-Save with: Ctrl+O, Enter, Ctrl+W, Enter
-
-Now log out and log back in to make the changes take affect.
-
-Now Start the Cadence Server - Everything should work
-
-**Ardour - DAW**
-
-```bash
-sudo pacman -S ardour
-
-# Optional
-sudo pacman -S xjadeo  # A simple video player that is synchronized to jack (work with film files on music production base)
-sudo pacman -S harvid  # HTTP Ardour Video Daemon
-```
-
-**Now Start Ardour**
-
-On Audio/MIDI Setup, choose: Audio System -> JACK + Connect to JACK
-
-If an Error appears, make sure JACK has the right audio group privileges.
-
-Change Font Size: Preferences -> Appearance -> GUI and Font Scaling
-
-Maybe also take a look at [PW](https://pipewire.org/)
-
-**Maybe install RealTime Kernel**
-
-Linux Real Time Kernel might increase Performance but it is not necessary.
-
-In Manjaro, the Kernel Menu make it easy to install the RT Kernal of Linux
-
-If you do so, reboot your Machine.
-
-```bash
-uname -a  # Check if the installation was successful
-```
-
-Make sure to test the RT Kernal first, before removing the other on!
-
-**Install more Audio Software**
-
-If you want to install lots of Plugins / VST in a row, use the *pro-audio* group for your installation (Nice overview in *Octopi*)
-
-**Zyn-Fusion (new user interface to ZynAddSubFX 3)**
-
-```bash
-yay -S zyn-fusion
-```
-
-In Ardour: Press Shift + E to open the Editor Mixer
-
-Add Plugins: Preferences -> Plugins -> Scan for Plugins
-
-Testing:
-
-- CTRL + Shift + N: Create Midi Track
-
-- Select as Instrument: ZynAddSubFX
-
-- (Name should be one String with no White spaces, I guess...)
-
-- Create
-
-  - If Not Visible in Editor Mixer, click on Fader (in the Editor Mixer) -> New Plugin -> Plugin Manager
-
-NOTE: Test all Plugins / VST your will install below
-
-**Surge**
-
-```bash
-yay -S surge-synthesizer-bin
-```
-
-**Calf**
-
-```bash
-sudo pacman -S calf
-```
-
-**LSP**
-
-```bash
-sudo pacman -S lsp-plugins
-```
-
-**Tap**
-
-```bash
-sudo pacman -S tap-plugins
-```
-
-**More Plugins (form the pro-audio Group -> Pacman)**
-
-- audacity
-
-- calf
-
-- caps
-
-- carla
-
-- dpf-plugins
-
-- dragonfly-reverb
-
-- drumgizmo
-
-- ebumeter
-
-- eq10q
-
-- geonkick
-
-- guitarix
-
-- helm
-
-- ir.lv2
-
-- liquidsfz
-
-- lsp-plugins
-
-- mda.lv2
-
-- ninjas2
-
-- noise-repellent
-
-- samplev1
-
-- setbfree
-
-- sherlock.lv2
-
-- sonic-visualiser
-
-- swh-plugins
-
-- tap-plugins
-
-- wolf-shaper
-
-- wolf-spectrum
-
-- x42-plugins
-
-- zam-plugins
-
-- zita-ajbridge
-
-- zita-njbridge
-
-- zita-rev1
-
-**Install Plugins from the AUR**
-
-- Bitrot-git
-
-- invada-studio-plugins-lv2
-
-**PulseAudio Jack Module**
-
-```bash
-sudo pacman -S pulseaudio-jack
-# or
-yay -S vcvrack-bin  # -> ASLA to JACK, Sound to System-Sound
-```
