@@ -1,7 +1,7 @@
 # XFCE
 
 ```bash
-sudo pacman -S xfce4 xfce4-goodies lightdm lightdm-gkt-greeter-settings lightdm-gtk-greeter
+sudo pacman -S xfce4 xfce4-goodies lightdm lightdm-gtk-greeter
 sudo systemctl enable lightdm
 ```
 
