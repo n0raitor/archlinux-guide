@@ -35,3 +35,5 @@ Optional:
 ```bash
 sudo pacman -S blackarch-config-xfce
 ```
+
+Other: https://www.kali.org/docs/general-use/xfce-faq/
