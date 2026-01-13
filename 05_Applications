@@ -36,6 +36,7 @@ yay -S neofetch
 
 # Optional (Python Required)
 pip3 install pylint
+
 ```
 
 
@@ -192,6 +193,11 @@ sudo pacman -Syyu --needed --overwrite='*' <wanted-package>
 Example:
 ```bash
 sudo pacman -S blackarch-windows blackarch-dos blackarch-disassembler blackarch-networking blackarch-recon blackarch-cracker blackarch-forensic blackarch-wireless blackarch-binary blackarch-packer blackarch-reversing blackarch-mobile blackarch-malware blackarch-code-audit blackarch-social blackarch-wordlist blackarch-decompiler blackarch-debugger blackarch-bluetooth blackarch-unpacker blackarch-stego
+# -> Accept that not all packages could get installed!
+
+sudo pacman -Sg blackarch-config-cursor blackarch-config-gtk blackarch-config-x11 blackarch-config-xfce
+
+
 
 # If Dependencies of some packages are missing, skip them! (y if asked)
 ```

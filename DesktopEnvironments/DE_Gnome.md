@@ -5,6 +5,9 @@ Gnome:
 ```bash
 sudo pacman -S gnome gdm gnome-shell-extensions gnome-terminal gnome-tweaks extension-manager
 sudo pacman -S gnome-shell-extension-caffeine
+# Install and Remove not useful software
+sudo pacman -S gnome-circle gnome-extra
+sudo pacman -Rns amberol gnome-calls epiphany gnome-console audio-sharing health komikku warp webfont-kit-generator mousai polari junction forge-sparks 
 sudo systemctl enable gdm.service
 ```
 

@@ -30,3 +30,8 @@ In Keyboard Shortcuts set xfce4-popup-whiskermenu run on windows-key
 sudo pacman -S redshift
 sudo systemctl enable redshift
 ```
+
+Optional:
+```bash
+sudo pacman -S blackarch-config-xfce
+```
