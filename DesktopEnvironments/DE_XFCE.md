@@ -1,7 +1,7 @@
 # XFCE
 
 ```bash
-sudo pacman -S xfce4 xfce4-goodies lightdm lightdm-gtk-greeter network-manager-applet 
+sudo pacman -S xfce4 xfce4-goodies lightdm lightdm-gtk-greeter
 sudo systemctl enable lightdm
 ```
 
@@ -19,7 +19,7 @@ For Kali-Style use:
 Use Flat-Remix
 
 ```bash
-sudo pacman -S xfce4-whiskermenu-plugin xfce4-session xfce4-pulseaudio-plugin sound-theme-freedesktop sound-theme-smooth 
+sudo pacman -S xfce4-whiskermenu-plugin xfce4-session xfce4-pulseaudio-plugin sound-theme-freedesktop sound-theme-smooth qterminal network-manager-applet 
 yay -S sound-theme-smooth xfce4-volumed-pulse xfce4-mixer xfce4-screensaver
 ```
 
