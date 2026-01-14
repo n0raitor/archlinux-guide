@@ -21,6 +21,7 @@ Use Flat-Remix
 ```bash
 sudo pacman -S xfce4-whiskermenu-plugin xfce4-session xfce4-pulseaudio-plugin sound-theme-freedesktop sound-theme-smooth qterminal network-manager-applet 
 yay -S sound-theme-smooth xfce4-volumed-pulse xfce4-mixer xfce4-screensaver
+sudo pacman -Rns rlt---dkm----git (Something like that if Login is not passoble
 ```
 
 **Popup Menu on Windows-Icon**
